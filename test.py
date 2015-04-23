@@ -49,10 +49,10 @@ class UrlBuilderTest(unittest.TestCase):
         self.assertEqual('10', self.builder.pad_single_digit(10))
 
     def testSearchUrl(self):
-        self.assertIsNone(self.builder.build_search_url())
+        self.assertIsNotNone(self.builder.build_search_url())
 
     def testWholeUrl(self):
-        self.assertIsNone(self.builder.build_url())
+        self.assertIsNotNone(self.builder.build_url())
 
 class LinkFinderTest(unittest.TestCase):
 
