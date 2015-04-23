@@ -7,7 +7,7 @@ from time_converter import TimeConverter
 from url_builder import UrlBuilder
 
 logging.basicConfig(level=logging.INFO)
-handler = logging.FileHandler('hello.log')
+handler = logging.FileHandler('mlb.log')
 handler.setLevel(logging.INFO)
 logger = logging.getLogger(__name__)
 logger.addHandler(handler)
