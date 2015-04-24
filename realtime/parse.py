@@ -1,6 +1,10 @@
 import requests
 import xml.etree.ElementTree as ET
 
+# TODO: We need to handle case where no game has started yet,
+#       i.e. the url returns a 404 not found error. Currently
+#       this returns a ET.ParseError
+
 
 class MlbParser:
     
