@@ -7,8 +7,9 @@ from time_converter import TimeConverter
 
 class Client:
 
-    def __init__(self, mlb_parser):
+    def __init__(self, mlb_parser, update_interval=1.25):
         self.mlb_parser = mlb_parser
+        self.update_interval = update_interval
         self.logger = None
         self.initialize_logger()
 
@@ -21,7 +22,7 @@ class Client:
         self.logger.info(TimeConverter().get_timestamp() + '\tStart Client')
 
     def update(self):
-        threading.Timer(1.25, self.update).start()
+        threading.Timer(self.update_interval, self.update).start()
         xml = self.mlb_parser.get_xml()
         self.mlb_parser.get_play(xml)
         if self.mlb_parser.score is not None:
