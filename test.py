@@ -54,6 +54,7 @@ class UrlBuilderTest(unittest.TestCase):
     def testWholeUrl(self):
         self.assertIsNotNone(self.builder.build_url())
 
+
 class LinkFinderTest(unittest.TestCase):
 
     def setUp(self):
