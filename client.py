@@ -43,9 +43,3 @@ def main():
     mlb = MlbParser(url)
     c = Client(mlb)
     c.update()
-
-#if __name__ == "__main__":
-#    main()
-
-
-# mlb = MlbParser("http://gd2.mlb.com/components/game/mlb/year_2015/month_04/day_21/gid_2015_04_21_slnmlb_wasmlb_1/runScoringPlays.plist")
