@@ -31,11 +31,16 @@ class Client:
             self.mlb_parser.score = self.mlb_parser.get_score(self.mlb_parser.last_play)
             logger.info("%s\thome:\t%s\taway:\t%s", self.mlb_parser.last_play.findall('string')[-1].text, self.mlb_parser.score['home'], self.mlb_parser.score['away'])
 
-if __name__ == "__main__":
+
+def main():
     converted_time = TimeConverter().get_time()
     url = UrlBuilder(converted_time).build_url()
     mlb = MlbParser(url)
     c = Client(mlb)
     c.update()
+
+if __name__ == "__main__":
+    main()
+
 
 # mlb = MlbParser("http://gd2.mlb.com/components/game/mlb/year_2015/month_04/day_21/gid_2015_04_21_slnmlb_wasmlb_1/runScoringPlays.plist")
