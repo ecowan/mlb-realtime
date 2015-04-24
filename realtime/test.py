@@ -5,6 +5,8 @@ from url_builder import UrlBuilder
 from link_finder import LinkFinder
 
 
+# TODO: Pass time structs very early in morning before games to test ParseError catching (see todo in parse.py)
+
 class ParserTest(unittest.TestCase):
 
     def setUp(self):
