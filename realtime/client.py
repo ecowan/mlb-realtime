@@ -10,6 +10,7 @@ class Client:
     def __init__(self, mlb_parser):
         self.mlb_parser = mlb_parser
         self.logger = None
+        self.initialize_logger()
 
     def initialize_logger(self):
         logging.basicConfig(level=logging.INFO)
@@ -20,7 +21,6 @@ class Client:
         self.logger.info(TimeConverter().get_timestamp() + '\tStart Client')
 
     def update(self):
-        self.initialize_logger()
         threading.Timer(1.25, self.update).start()
         xml = self.mlb_parser.get_xml()
         self.mlb_parser.get_play(xml)
