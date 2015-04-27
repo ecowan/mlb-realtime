@@ -42,7 +42,7 @@ class UrlBuilderTest(unittest.TestCase):
 
     def setUp(self):
         self.time_dict = TimeConverter().get_time()
-        self.builder = UrlBuilder(self.time_dict)
+        self.builder = UrlBuilder(self.time_dict, "was")
 
     def testPadSingleDigit(self):
         self.assertEqual('04', self.builder.pad_single_digit(4))
@@ -85,4 +85,4 @@ class TeamCodeLookupTest(unittest.TestCase):
         self.assertEqual('laa', self.db.get_team_code('LA Angels'))
 
     def testLAIncomplete(self):
-        self.assertEqual(None, self.db.get_team_code('LA'))
+        self.assertGreaterEqual(len(self.db.get_team_code('LA')), 2)
