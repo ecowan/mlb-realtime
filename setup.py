@@ -18,7 +18,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.0.10',
+    version='0.0.11',
 
     description='Real time baseball updates',
 
@@ -98,20 +98,3 @@ setup(
         ],
     },
 )
-
-'''
-
-from setuptools import setup
-
-
-setup(name='mlb-realtime',
-      version='0.0',
-      description='Realtime scoring play updates',
-      url='http://github.com/ecowan/mlb-realtime',
-      author='Ethan Cowan',
-      author_email='ethan24@gmail.com',
-      license='MIT',
-      packages=['mlb-realtime'],
-      zip_safe=False)
-
-'''
