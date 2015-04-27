@@ -31,7 +31,10 @@ class MlbParser:
         except ET.ParseError:
             return None
         array = root.find('dict').find('array')
-        new_play = array.findall('dict')[-1]
+        if len(array.findall('dict')) > 0:
+            new_play = array.findall('dict')[-1]
+        else:
+            return None
         timestamp = new_play.findall('date')[-1]
         if self.last_play is not None:
             if timestamp != self.last_play.findall('date')[-1]:
