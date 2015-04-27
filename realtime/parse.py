@@ -26,7 +26,10 @@ class MlbParser:
             return {'away': 0, 'home': 0}
 
     def get_play(self, xml_string):
-        root = ET.fromstring(xml_string)
+        try:
+            root = ET.fromstring(xml_string)
+        except ET.ParseError:
+            return None
         array = root.find('dict').find('array')
         new_play = array.findall('dict')[-1]
         timestamp = new_play.findall('date')[-1]

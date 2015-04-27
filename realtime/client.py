@@ -19,19 +19,21 @@ class Client:
         handler.setLevel(logging.INFO)
         self.logger = logging.getLogger(__name__)
         self.logger.addHandler(handler)
-        self.logger.info(TimeConverter().get_timestamp() + '\tStart Client')
+        self.logger.info(TimeConverter().get_timestamp() + '\tStarting Realtime Baseball Updates')
 
     def update(self):
         threading.Timer(self.update_interval, self.update).start()
         xml = self.mlb_parser.get_xml()
-        self.mlb_parser.get_play(xml)
-        if self.mlb_parser.score is not None:
-            new_score = self.mlb_parser.get_score(self.mlb_parser.last_play)
-            if new_score != self.mlb_parser.score:
-                self.mlb_parser.score = new_score
-                self.logger.info("%s\t%s", self.mlb_parser.last_play.findall('string')[-1].text, self.mlb_parser.score['home'])
+        play = self.mlb_parser.get_play(xml)
+        if play is not None:
+            if self.mlb_parser.score is not None:
+                new_score = self.mlb_parser.get_score(self.mlb_parser.last_play)
+                if new_score != self.mlb_parser.score:
+                    self.mlb_parser.score = new_score
+                    self.logger.info("%s\t%s", self.mlb_parser.last_play.findall('string')[-1].text, self.mlb_parser.score['home'])
         else:
             self.mlb_parser.score = self.mlb_parser.get_score(self.mlb_parser.last_play)
-            self.logger.info("%s\thome:\t%s\taway:\t%s", self.mlb_parser.last_play.findall('string')[-1].text, self.mlb_parser.score['home'], self.mlb_parser.score['away'])
+            if self.mlb_parser.last_play is not None:
+                self.logger.info("%s\thome:\t%s\taway:\t%s", self.mlb_parser.last_play.findall('string')[-1].text, self.mlb_parser.score['home'], self.mlb_parser.score['away'])
 
 

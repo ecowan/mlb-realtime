@@ -6,9 +6,10 @@ from link_finder import LinkFinder
 
 class UrlBuilder:
 
-    def __init__(self, time_dict):
+    def __init__(self, time_dict, team_code):
         self.base_url = "http://gd2.mlb.com/components/game/mlb/"
         self.time_dict = dict((k, self.pad_single_digit(v)) for k,v in time_dict.items())
+        self.team_code = team_code
 
     def pad_single_digit(self, num):
         if num < 10:
@@ -20,7 +21,7 @@ class UrlBuilder:
         return self.base_url +  "/".join(["year_"+self.time_dict['year'], "month_"+self.time_dict['month'], "day_"+self.time_dict['day']])
 
     def get_gid(self):
-        return LinkFinder(self.build_search_url()).get_link()
+        return LinkFinder(self.build_search_url(), self.team_code).get_link()
 
     def build_url(self):
         search_url = self.build_search_url()

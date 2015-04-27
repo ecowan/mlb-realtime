@@ -15,10 +15,11 @@ class LinkFinder:
         text = requests.get(self.url).content
         soup = BeautifulSoup(text)
         if self.team_name is None:
+            # TODO: Log an error here before going to default case
             self.team_name = "wasmlb"
         else:
             self.team_name = self.team_name+"mlb"
-        filtered_links = soup.find_all(href=re.compile("wasmlb"))
+        filtered_links = soup.find_all(href=re.compile(self.team_name))
         if len(filtered_links) == 1:
             return str(filtered_links[0]['href'])
         else:
