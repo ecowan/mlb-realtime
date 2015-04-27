@@ -3,7 +3,7 @@ from parse import MlbParser
 from time_converter import TimeConverter
 from url_builder import UrlBuilder
 from link_finder import LinkFinder
-
+from database import PickleDatabase
 
 # TODO: Pass time structs very early in morning before games to test ParseError catching (see todo in parse.py)
 
@@ -60,8 +60,29 @@ class UrlBuilderTest(unittest.TestCase):
 class LinkFinderTest(unittest.TestCase):
 
     def setUp(self):
-        self.search_url = "http://gd2.mlb.com/components/game/mlb/year_2015/month_04/day_23/"
+        self.search_url = "http://gd2.mlb.com/components/game/mlb/year_2015/month_04/day_22/"
         self.link_finder = LinkFinder(self.search_url)
 
     def testUrlIsFound(self):
         self.assertIsNotNone(self.link_finder.get_link())
+
+class TeamCodeLookupTest(unittest.TestCase):
+
+    def setUp(self):
+        self.db = PickleDatabase()
+        self.db.seed()
+
+    def testCorrectKey(self):
+        self.assertEqual('bal', self.db.get_team_code('Baltimore Orioles'))
+
+    def testMisspelledKey(self):
+        self.assertEqual('bal', self.db.get_team_code('Blatimore Orioles'))
+
+    def testDodgersIncomplete(self):
+        self.assertEqual('lad', self.db.get_team_code('LA Dodgers'))
+
+    def testAngelsIncomplete(self):
+        self.assertEqual('laa', self.db.get_team_code('LA Angels'))
+
+    def testLAIncomplete(self):
+        self.assertEqual(None, self.db.get_team_code('LA'))
