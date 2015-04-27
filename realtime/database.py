@@ -11,6 +11,36 @@ def db_logger():
     handler.setLevel(logging.ERROR)
     logger.addHandler(handler)
 
+teams_string = '''Arizona Diamondbacks	ARI
+Atlanta Braves	ATL
+Baltimore Orioles	BAL
+Boston Red Sox	BOS
+Chicago Cubs	CHN
+Chicago White Sox	CHA
+Cincinnati Reds	CIN
+Cleveland Indians	CLE
+Colorado Rockies	COL
+Detroit Tigers	DET
+Florida Marlins	FLA
+Houston Astros	HOU
+Kansas City Royals	KAN
+Los Angeles Angels of Anaheim	LAA
+Los Angeles Dodgers	LAD
+Milwaukee Brewers	MIL
+Minnesota Twins	MIN
+New York Mets	NYM
+New York Yankees	NYY
+Oakland Athletics	OAK
+Philadelphia Phillies	PHI
+Pittsburgh Pirates	PIT
+San Diego Padres	SD
+San Francisco Giants	SF
+Seattle Mariners	SEA
+St. Louis Cardinals	STL
+Tampa Bay Rays	TB
+Texas Rangers	TEX
+Toronto Blue Jays	TOR
+Washington Nationals	WAS'''
 
 class PickleDatabase:
 
@@ -19,12 +49,11 @@ class PickleDatabase:
         self.logger = logger or logging.getLogger(__name__)
 
     def seed(self):
-        with open('teams.txt', 'r') as infile:
-            for line in infile.readlines():
-                line_list = line.split('\t')
-                team_name = line_list[0].lower().strip()
-                team_code = line_list[1].lower().strip()
-                self.db.set(team_name, team_code)
+        for line in teams_string.split('\n'):
+            line_list = line.split('\t')
+            team_name = line_list[0].lower().strip()
+            team_code = line_list[1].lower().strip()
+            self.db.set(team_name, team_code)
 
     @staticmethod
     def get_city(team_name):
