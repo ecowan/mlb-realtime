@@ -29,6 +29,7 @@ class MlbParser:
         try:
             root = ET.fromstring(xml_string)
         except ET.ParseError:
+            # TODO: Log parse error here
             return None
         array = root.find('dict').find('array')
         if len(array.findall('dict')) > 0:

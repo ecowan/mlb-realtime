@@ -4,6 +4,18 @@ __author__ = 'ecowan'
 from time_converter import TimeConverter
 from link_finder import LinkFinder
 
+# TODO: Need to handle case where team is not playing that day.
+# Currently returns: 
+'''
+Traceback (most recent call last):
+  File "/usr/local/bin/mlb-realtime", line 9, in <module>
+    load_entry_point('mlb-realtime==0.0.13', 'console_scripts', 'mlb-realtime')()
+  File "build/bdist.linux-x86_64/egg/realtime/__main__.py", line 41, in main
+  File "build/bdist.linux-x86_64/egg/realtime/url_builder.py", line 29, in build_url
+TypeError: sequence item 1: expected string, NoneType found
+'''
+
+
 class UrlBuilder:
 
     def __init__(self, time_dict, team_code):
