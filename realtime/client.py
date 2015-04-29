@@ -31,9 +31,9 @@ class Client:
                 if new_score != self.mlb_parser.score:
                     self.mlb_parser.score = new_score
                     self.logger.info("%s\t%s", self.mlb_parser.last_play.findall('string')[-1].text, self.mlb_parser.score['home'])
-        else:
-            self.mlb_parser.score = self.mlb_parser.get_score(self.mlb_parser.last_play)
-            if self.mlb_parser.last_play is not None:
-                self.logger.info("%s\thome:\t%s\taway:\t%s", self.mlb_parser.last_play.findall('string')[-1].text, self.mlb_parser.score['home'], self.mlb_parser.score['away'])
+            else:
+                self.mlb_parser.score = self.mlb_parser.get_score(self.mlb_parser.last_play)
+                if self.mlb_parser.last_play is not None:
+                    self.logger.info("%s\thome:\t%s\taway:\t%s", self.mlb_parser.last_play.findall('string')[-1].text, self.mlb_parser.score['home'], self.mlb_parser.score['away'])
 
 
