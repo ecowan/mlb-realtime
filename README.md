@@ -13,7 +13,13 @@ sudo pip install mlb-realtime
 ### To Run:
 
 ```
-mlb-realtime
+mlb-realtime <teamname>
+```
+
+For example:
+
+```
+mlb-realtime washington nationals
 ```
 
 Play by play output is logged to mlb.log
