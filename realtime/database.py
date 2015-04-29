@@ -28,8 +28,8 @@ Los Angeles Angels of Anaheim	LAA
 Los Angeles Dodgers	LAD
 Milwaukee Brewers	MIL
 Minnesota Twins	MIN
-New York Mets	NYM
-New York Yankees	NYY
+New York Mets	NYN
+New York Yankees	NYA
 Oakland Athletics	OAK
 Philadelphia Phillies	PHI
 Pittsburgh Pirates	PIT
